@@ -7,6 +7,7 @@ class SortedList {
   add(item) {
     this.items.push(item)
     this.items.sort((a,b) => (b > a ? -1 : 1))
+    this.length++
   }
 
   get(pos) {
@@ -39,10 +40,21 @@ class SortedList {
     }
 
   sum() {
-    
+    if(this.items.length == 0){
+      return 0
+    } else {
+      return this.items.reduce(function(acc, val) {
+        return acc + val
+      }, 0)
+    }
   }
 
-  avg() {}
-}
+  avg() {
+    if (this.items.length == 0){
+      throw new Error(‘EmptySortedList’);
+    } else {
+      return this.sum() / this.items.length
+    }
+  }
 
 module.exports = SortedList;
